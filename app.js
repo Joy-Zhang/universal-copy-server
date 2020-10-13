@@ -9,7 +9,9 @@ const clipboard = require('./clipboard');
 app.use(json());
 
 app.post(`/${pjson.version}/copy`, (req, resp) => {
-    clipboard.copy(req.body.content);
+    if (req.body.content) {
+        clipboard.copy(req.body.content);
+    }
     resp.json({
         code: 0,
         message: 'success'
